@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#13091f">
+<title>KING X — Keyless Script Hub</title>
+<style>
+:root{--bg:#100918;--panel:#1c1229;--purple:#8b25ff;--purple2:#5c12c5;--gold:#ffc94a;--text:#f7f0ff;--muted:#b9a9ca;--green:#54f58b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#421078 0,#160b24 42%,#09060e 100%);color:var(--text);font:15px system-ui,Arial,sans-serif;min-height:100vh}
+header{padding:22px 16px 18px;text-align:center;border-bottom:1px solid #7e2bd7;background:linear-gradient(120deg,#170b24,#35105b,#170b24)}
+.crown{font-size:38px;color:var(--gold);filter:drop-shadow(0 0 12px #ffbd35)}h1{margin:3px 0 0;font-size:clamp(28px,7vw,48px);letter-spacing:2px;text-shadow:0 0 18px #a33cff}header p{margin:5px 0;color:#d8c8e8;font-weight:700;letter-spacing:2px}
+.status{display:inline-block;margin-top:9px;padding:5px 12px;border:1px solid #36d875;border-radius:30px;color:var(--green);font-weight:800;font-size:12px}
+main{max-width:1100px;margin:auto;padding:16px;display:grid;grid-template-columns:210px 1fr;gap:14px}
+nav,.panel{background:#170f22;border:1px solid #6e27a9;border-radius:14px;box-shadow:0 0 18px #6d1bb522}
+nav{padding:10px;height:max-content}nav button{width:100%;margin:4px 0;text-align:left}
+button{border:1px solid #7430b8;background:linear-gradient(135deg,#7220ce,#431080);color:white;border-radius:9px;padding:11px 13px;font-weight:800;cursor:pointer}
+button:active{transform:scale(.98)}.mutedbtn{background:#292033;border-color:#51415f}
+.content{display:grid;gap:14px}.panel{padding:14px}.panel h2{font-size:16px;margin:0 0 11px;color:#d9b8ff}
+input,textarea{width:100%;background:#09070e;color:#f4eaff;border:1px solid #59317b;border-radius:9px;padding:12px;font:14px ui-monospace,monospace}
+textarea{min-height:190px;resize:vertical;line-height:1.5}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}.game{background:#21152f;border:1px solid #59317b;padding:10px;border-radius:9px;color:#eee}
+.actions{display:flex;gap:8px;margin-top:9px}.actions button{flex:1}.console{background:#080d0a;border:1px solid #285d39;color:#79f6a3;padding:12px;border-radius:9px;min-height:65px;font:13px ui-monospace,monospace;white-space:pre-wrap}
+small,.hint{color:var(--muted)}footer{text-align:center;color:#a995b8;padding:10px 16px 24px;font-size:12px}
+@media(max-width:650px){main{grid-template-columns:1fr;padding:10px}nav{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}nav button{text-align:center;padding:10px 4px;font-size:12px}.games{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="crown">♛</div>
+  <h1>KING X</h1>
+  <p>UNIVERSAL SCRIPT HUB</p>
+  <span class="status">✓ KEYLESS ACCESS</span>
+</header>
+<main>
+<nav aria-label="Navigation">
+  <button>⌂ Home</button><button>🎮 Script Hub</button><button>★ Saved Scripts</button>
+  <button>⚙ Settings</button><button>♛ About KING X</button>
+</nav>
+<section class="content">
+  <div class="panel">
+    <h2>GAME LIBRARY</h2>
+    <input id="search" placeholder="Search games..." aria-label="Search games">
+    <div class="games" id="games"></div>
+    <p class="hint">Choose a game to select it in your hub.</p>
+  </div>
+  <div class="panel">
+    <h2>LUA WORKSPACE</h2>
+    <textarea id="editor" spellcheck="false">print("KING X is ready!")</textarea>
+    <div class="actions"><button id="run">▶ RUN DEMO</button><button class="mutedbtn" id="clear">CLEAR</button></div>
+    <p class="hint">This browser demo does not inject code into Roblox. Use Roblox Studio to run approved code in your own experience.</p>
+  </div>
+  <div class="panel">
+    <h2>CONSOLE</h2>
+    <div class="console" id="console">[KING X] Website loaded.
+[KING X] Keyless access enabled.
+[KING X] Ready.</div>
+  </div>
+</section>
+</main>
+<footer>KING X • Royal Purple Edition • Fan-made interface demo</footer>
+<script>
+const names=["Brookhaven","Blox Fruits","Adopt Me!","BedWars","DOORS","Murder Mystery 2","Arsenal","Blade Ball","Jailbreak","Royale High","Tower of Hell","Dress To Impress","Evade","Pet Simulator","Bee Swarm Simulator","Piggy","Build A Boat","Natural Disaster Survival"];
+const games=document.getElementById('games'),search=document.getElementById('search'),out=document.getElementById('console');
+function render(){games.innerHTML='';names.filter(n=>n.toLowerCase().includes(search.value.toLowerCase())).forEach(n=>{const b=document.createElement('button');b.className='game';b.textContent='🎮 '+n;b.onclick=()=>{out.textContent='[KING X] Selected game: '+n+'\\n[INFO] This is a game directory demo.'};games.appendChild(b)})}
+search.addEventListener('input',render);render();
+document.getElementById('clear').onclick=()=>{document.getElementById('editor').value='';out.textContent='[KING X] Editor cleared.'};
+document.getElementById('run').onclick=()=>{const code=document.getElementById('editor').value.trim();out.textContent=code==='print("KING X is ready!")'||code==="print('KING X is ready!')"?'[KING X] Demo command ran successfully.':'[KING X] Browser demo only. Arbitrary Lua execution is disabled.'};
+</script>
+</body></html>
